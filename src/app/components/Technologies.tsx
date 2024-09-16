@@ -1,64 +1,40 @@
-import React from 'react'
-
-type Technology = {
-  name: string
-  logo: string
-}
-
-const technologies: Technology[] = [
-  {
-    name: "React",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
-  },
-  {
-    name: "Angular",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg"
-  },
-  {
-    name: "Docker",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
-  },
-  {
-    name: "Node.js",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
-  },
-  {
-    name: "TypeScript",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
-  },
-  {
-    name: "MongoDB",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg"
-  },
-  {
-    name: "Python",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
-  },
-  {
-    name: "Git",
-    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
-  }
-]
-
 export default function Technologies() {
   return (
-    <>
-      <div className="h-80"></div>
-      <div className="bg-gray-900 text-emerald-400 p-8 rounded-lg shadow-lg">
-        <h2 className="text-4xl font-bold mb-6 text-center uppercase tracking-tight">TECNOLOGÍAS</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {technologies.map((tech, index) => (
-            <div key={index} className="flex flex-col items-center p-4 bg-gray-800 rounded-lg transition-all duration-300 hover:shadow-lg hover:shadow-emerald-500/50">
-              <img
-                src={tech.logo}
-                alt={`${tech.name} logo`}
-                className="w-20 h-20 mb-4 object-contain"
-              />
-              <span className="text-lg font-semibold text-center">{tech.name}</span>
-            </div>
-          ))}
-        </div>
+    <div className="bg-[#1e1e1e] p-6 rounded-lg shadow-lg">
+      <h2 className="text-2xl font-bold mb-4 text-blue-400">Tecnologías</h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <TechnologyCard
+          icon="https://cdn-icons-png.flaticon.com/512/1183/1183672.png"
+          title="Frontend"
+          technologies={["React", "Next.js", "Tailwind CSS", "TypeScript"]}
+        />
+        <TechnologyCard
+          icon="https://cdn-icons-png.flaticon.com/512/1183/1183669.png"
+          title="Backend"
+          technologies={["Node.js", "Express", "PostgreSQL", "MongoDB"]}
+        />
+        <TechnologyCard
+          icon="https://cdn-icons-png.flaticon.com/512/1183/1183671.png"
+          title="Otros"
+          technologies={["Git", "Docker", "AWS", "GraphQL"]}
+        />
       </div>
-    </>
+    </div>
+  )
+}
+
+function TechnologyCard({ icon, title, technologies }) {
+  return (
+    <div className="bg-[#2a2a2a] p-4 rounded-md shadow">
+      <div className="flex items-center mb-3">
+        <img src={icon} alt={title} className="w-8 h-8 text-purple-500" />
+        <h3 className="text-lg font-semibold ml-2 text-blue-300">{title}</h3>
+      </div>
+      <ul className="space-y-1">
+        {technologies.map((tech, index) => (
+          <li key={index} className="text-[#d4d4d4]">{tech}</li>
+        ))}
+      </ul>
+    </div>
   )
 }
