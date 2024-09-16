@@ -4,7 +4,7 @@ import Link from 'next/link'
 export const Menu = () => {
 
 return (
-    <nav className="fixed top-0 left-0 right-0 p-6 z-50 bg-opacity-80">
+    <nav className="fixed top-0 left-0 right-0 p-6 z-50 font-bold bg-opacity-90 backdrop-blur-sm shadow-sm">
       {/* Menú superior */}
       <ul className="flex justify-center space-x-8">
         {[
@@ -16,7 +16,7 @@ return (
             <li key={item.name}>
               <Link href={item.path} className="flex items-center space-x-2 hover:text-emerald-300 transition-colors group">
                 <item.icon className="w-5 h-5 group-hover:animate-spin" />
-                <span className="relative overflow-hidden">
+                <span className="relative overflow-hidden text-shadow-relief">
                   <span className="block ">
                     {item.name}
                   </span>

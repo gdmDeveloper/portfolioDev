@@ -1,119 +1,87 @@
-"use client";
+import Link from "next/link"
+import { Code, Terminal, Globe } from "lucide-react"
+import ExperienceSection from "./components/Experience"
 
-import { useState, useEffect } from 'react'
-import { AboutMe } from './components/AboutMe';
-import { Menu } from './components/Menu';
-import WorkExperience from './components/WorkExperience';
-import Technologies from './components/Technologies';
-
-export default function Component() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-
-  useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY })
-    }
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [])
-
+export default function EnhancedLandingPage() {
   return (
-    <div className="min-h-screen bg-gray-900 text-emerald-400 font-sans relative overflow-hidden flex justify-center items-center">
-      {/* Efecto de fondo interactivo */}
-      <div 
-        className="absolute inset-0 bg-[radial-gradient(circle,_var(--tw-gradient-stops))] from-emerald-900 to-transparent opacity-50"
-        style={{
-          backgroundPosition: `${mousePosition.x / 5}px ${mousePosition.y / 5}px`,
-        }}
-      />
-
-      {/* Líneas de cuadrícula */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzEwYjk4MSIgc3Ryb2tlLW9wYWNpdHk9IjAuMSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIiAvPjwvc3ZnPg==')] opacity-30" />
-
-      <div className="max-w-6xl w-full mx-auto px-4">
-        <Menu />
-        <AboutMe />
-        <WorkExperience />
-        <Technologies />
+    <div className="min-h-screen flex flex-col bg-[#1e1e1e] text-[#d4d4d4] font-mono relative overflow-hidden">
+      {/* Linux-style buttons */}
+      <div className="absolute top-3 left-3 flex space-x-2 m">
+        <div className="w-2 h-2 rounded-full bg-[#ff605c]"></div>
+        <div className="w-2 h-2 rounded-full bg-[#ffbd44]"></div>
+        <div className="w-2 h-2 rounded-full bg-[#00ca4e]"></div>
       </div>
 
-      <style jsx>{`
-        .glitch {
-          position: relative;
-          animation: glitch 1s infinite;
-        }
-        .glitch::before,
-        .glitch::after {
-          content: attr(data-text);
-          position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-        }
-        .glitch::before {
-          left: 2px;
-          text-shadow: -2px 0 #10b981;
-          clip: rect(44px, 450px, 56px, 0);
-          animation: glitch-anim 5s infinite linear alternate-reverse;
-        }
-        .glitch::after {
-          left: -2px;
-          text-shadow: -2px 0 #059669, 2px 2px #10b981;
-          animation: glitch-anim2 1s infinite linear alternate-reverse;
-        }
-        @keyframes glitch {
-          2%, 64% {
-            transform: translate(2px,0) skew(0deg);
-          }
-          4%, 60% {
-            transform: translate(-2px,0) skew(0deg);
-          }
-          62% {
-            transform: translate(0,0) skew(5deg); 
-          }
-        }
-        @keyframes glitch-anim {
-          0% {
-            clip: rect(76px, 9999px, 87px, 0);
-          }
-          20% {
-            clip: rect(5px, 9999px, 95px, 0);
-          }
-          40% {
-            clip: rect(89px, 9999px, 36px, 0);
-          }
-          60% {
-            clip: rect(100px, 9999px, 96px, 0);
-          }
-          80% {
-            clip: rect(54px, 9999px, 77px, 0);
-          }
-          100% {
-            clip: rect(86px, 9999px, 38px, 0);
-          }
-        }
-        @keyframes glitch-anim2 {
-          0% {
-            clip: rect(36px, 9999px, 2px, 0);
-          }
-          20% {
-            clip: rect(65px, 9999px, 92px, 0);
-          }
-          40% {
-            clip: rect(90px, 9999px, 51px, 0);
-          }
-          60% {
-            clip: rect(23px, 9999px, 75px, 0);
-          }
-          80% {
-            clip: rect(82px, 9999px, 15px, 0);
-          }
-          100% {
-            clip: rect(4px, 9999px, 91px, 0);
-          }
-        }
-      `}</style>
+      {/* Line numbers */}
+      <div className="absolute left-0 top-7 bottom-0 w-12 flex flex-col items-end pr-2 text-[#858585] text-sm">
+        {Array.from({ length: 100 }, (_, i) => (
+          <div key={i} className="leading-6">{i + 1}</div>
+        ))}
+      </div>
+
+      <header className="py-4 z-10">
+        <nav className="container mx-auto">
+          <ul className="flex justify-center space-x-8">
+            <li>
+              <Link href="#about" className="hover:text-[#9cdcfe] transition-colors">
+                Sobre mí
+              </Link>
+            </li>
+            <li>
+              <Link href="#experience" className="hover:text-[#9cdcfe] transition-colors">
+                Experiencia
+              </Link>
+            </li>
+            <li>
+              <Link href="#contact" className="hover:text-[#9cdcfe] transition-colors">
+                Contacto
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </header>
+
+      <main className="flex-grow flex items-center justify-center z-10">
+        <div className="text-right">
+          <h1 className="text-5xl font-bold mb-2 text-[#569cd6]">GUILLEM ARANA</h1>
+          <h2 className="text-2xl text-[#4ec9b0] mb-4">FULL STACK DEVELOPER</h2>
+          <div className="flex justify-end items-center space-x-4 text-[#ce9178]">
+            <Code size={24} />
+            <Terminal size={24} />
+            <Globe size={24} />
+          </div>
+          <p className="mt-4 text-[#dcdcaa] max-w-md text-right">
+            Con más de 3 años de experiencia en programación web, 
+            creando soluciones innovadoras y eficientes.
+          </p>
+        </div>
+      </main>
+
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="h-full w-full flex items-start justify-start p-4 pl-16 text-[#608b4e] opacity-20 overflow-hidden">
+          { /* TEXT TOP LEFT */ }
+          <pre className="text-xs">
+            {`
+import React from 'react';
+import { render } from 'react-dom';
+import ExperienceSection from './components/Experience';
+
+function App() {
+  return (
+    <div>
+      <h1>Welcome to my portfolio</h1>
+      <p>I'm a Full Stack Developer</p>
     </div>
+  );
+}
+
+render(<App />, document.getElementById('root'));
+            `}
+          </pre>
+        </div>
+      </div>
+    </div>
+
+    
   )
 }
